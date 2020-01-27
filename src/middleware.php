@@ -37,7 +37,7 @@ $app->add(
             $response = $response
                 ->withStatus($statut)
                 ->withHeader("Content-Type", "application/json")
-                ->write(json_encode(["erreur" => $e->getMessage()]));
+                ->write(json_encode(["error" => $e->getMessage()]));
         }
         return $response;
     }

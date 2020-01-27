@@ -45,12 +45,7 @@
     "generate-proxies": "doctrine  orm:generate-proxies",
     "phpcs": "phpcs -s src --standard=phpcs.xml --ignore=src/routes.php",
     "phpcbf": "phpcbf src --ignore=src/routes.php",
-    "test": [
-      "docker-compose -f docker-compose-test.yml up -d",
-      "sleep 1",
-      "phpunit",
-      "docker-compose -f docker-compose-test.yml down"
-    ],
+    "test": "phpunit",
     "test-application": "phpunit --testsuite Application",
     "test-domain": "phpunit --testsuite Domain",
     "test-infrastructure": "phpunit --testsuite Infrastructure",

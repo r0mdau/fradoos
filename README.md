@@ -77,6 +77,8 @@ the same.
 You can disable the launch of a sql server in docker and use an alternative.
 
 ```bash
+# you need mysql running \o/ todos
+./run.sh
 composer test
 ```
 
