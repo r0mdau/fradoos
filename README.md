@@ -87,9 +87,9 @@ composer test
 Mutliple composer scripts to help daily tasks.
 
 ## TODOs
-- [ ] Upgrade slimframework
-- [ ] Upgrade Doctrine orm
-- [ ] Upgrade PHPUnit
+- [x] Upgrade slimframework
+- [x] Upgrade Doctrine orm
+- [x] Upgrade PHPUnit
 - [ ] Add specifications
 - [ ] Add more entities to show links using doctrine (ManyToOne, OneToMany, ManyToMany, Inheritance)
 - [ ] Implement MessageLog class
