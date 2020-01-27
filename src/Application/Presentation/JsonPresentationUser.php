@@ -9,6 +9,7 @@ class JsonPresentationUser extends SimpleJsonPresentation implements IPresentati
 {
     public static $id = 'id';
     public static $name = 'name';
+    public static $email = 'email';
 
     public function __construct()
     {
@@ -17,6 +18,9 @@ class JsonPresentationUser extends SimpleJsonPresentation implements IPresentati
         $this->mappings[JsonPresentationUser::$name] = function (User $object) {
             return $object->getName();
         };
+        $this->mappings[JsonPresentationUser::$email] = function (User $object) {
+            return $object->getEmail();
+        };
     }
 
     public function allDefaultProperties()
@@ -24,6 +28,7 @@ class JsonPresentationUser extends SimpleJsonPresentation implements IPresentati
         return [
             SimpleJsonPresentation::$id,
             JsonPresentationUser::$name,
+            JsonPresentationUser::$email,
         ];
     }
 }

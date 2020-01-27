@@ -6,7 +6,7 @@ class UserTest extends \PHPUnit\Framework\TestCase
 {
     public function testConstruct()
     {
-        $user = new User("Georges VI");
+        $user = new User("Georges VI", "test@example.com");
 
         $this->assertEquals("Georges VI", $user->getName());
     }
@@ -17,12 +17,21 @@ class UserTest extends \PHPUnit\Framework\TestCase
      */
     public function testConstructThrowErrorIfNameIsEmpty()
     {
-        new User(null);
+        new User("", "test@example.com");
+    }
+
+    /**
+     * @expectedException \Fradoos\Domain\Error\ErrorParameter
+     * @expectedExceptionMessage The user email is mandatory.
+     */
+    public function testConstructThrowErrorIfEmailIsEmpty()
+    {
+        new User("Georges V", "");
     }
 
     public function testGetAndSetName()
     {
-        $user = new User("Elisabeth");
+        $user = new User("Elisabeth", "test@example.com");
         $this->assertEquals("Elisabeth", $user->getName());
 
         $user->setName("Georges V");
@@ -35,7 +44,26 @@ class UserTest extends \PHPUnit\Framework\TestCase
      */
     public function testSetNameThrowErrorIfNull()
     {
-        $user = new User("Georges VI");
-        $user->setName(null);
+        $user = new User("Georges VI", "test@example.com");
+        $user->setName("");
+    }
+
+    public function testGetAndSetEmail()
+    {
+        $user = new User("Elisabeth", "test@example.com");
+        $this->assertEquals("test@example.com", $user->getEmail());
+
+        $user->setEmail("new@example.com");
+        $this->assertEquals("new@example.com", $user->getEmail());
+    }
+
+    /**
+     * @expectedException \Fradoos\Domain\Error\ErrorParameter
+     * @expectedExceptionMessage The user email is mandatory.
+     */
+    public function testSetEmailThrowErrorIfNull()
+    {
+        $user = new User("Georges VI", "test@example.com");
+        $user->setEmail("");
     }
 }

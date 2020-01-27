@@ -19,7 +19,7 @@ class DoctrineRepositoryUserTest extends DoctrineRepositoryTestCase
 
     public function testAdd()
     {
-        $user = new User("Georges V");
+        $user = new User("Georges V", "test@example.com");
 
         $this->userRepository->add($user);
 
@@ -39,7 +39,7 @@ class DoctrineRepositoryUserTest extends DoctrineRepositoryTestCase
 
     public function testEdit()
     {
-        $user = new User("Georges V");
+        $user = new User("Georges V", "test@example.com");
         $this->persistInDatabase($user);
 
         $user->setName("Elisabeth");
@@ -70,7 +70,7 @@ class DoctrineRepositoryUserTest extends DoctrineRepositoryTestCase
 
     public function testGet()
     {
-        $user = new User("Charles");
+        $user = new User("Charles", "test@example.com");
         $this->persistInDatabase($user);
 
         $result = $this->userRepository->get($user->getId());
@@ -80,7 +80,7 @@ class DoctrineRepositoryUserTest extends DoctrineRepositoryTestCase
 
     public function testGetByName()
     {
-        $user = new User("Georges VI");
+        $user = new User("Georges VI", "test@example.com");
         $this->persistInDatabase($user);
 
         $result = $this->userRepository->getByName($user->getName());
@@ -90,7 +90,7 @@ class DoctrineRepositoryUserTest extends DoctrineRepositoryTestCase
 
     public function testGetAll()
     {
-        $this->persistInDatabase(new User("Georges V"));
+        $this->persistInDatabase(new User("Georges V", "test@example.com"));
         $result = $this->userRepository->getAll();
 
         $this->assertTrue(is_array($result));

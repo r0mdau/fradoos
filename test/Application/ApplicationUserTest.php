@@ -50,7 +50,8 @@ class ApplicationUserTest extends ApplicationTestCase
     {
         return [
             "id" => null,
-            "name" => null
+            "name" => null,
+            "email" => null
         ];
     }
 
@@ -73,18 +74,20 @@ class ApplicationUserTest extends ApplicationTestCase
             ->method("add")
             ->will($this->returnArgumentWithId());
 
-        $this->client->post("/user", ["name" => "Georges V"]);
+        $this->client->post("/user", ["name" => "Georges V", "email" => "test@example.com"]);
 
         $this->assertStatusEquals(201);
-        $this->assertResultEquals(["id" => 1, "name" => "Georges V"]);
+        $this->assertResultEquals(["id" => 1, "name" => "Georges V", "email" => "test@example.com"]);
     }
 
     public function testPut()
     {
         $user = $this->getMockBuilder(User::class)->disableOriginalConstructor()->getMock();
         $user->expects($this->once())->method("setName")->with("Georges V");
+        $user->expects($this->once())->method("setEmail")->with("test@example.com");
         $user->expects($this->once())->method("getId")->willReturn(1);
         $user->expects($this->once())->method("getName")->willReturn("Georges V");
+        $user->expects($this->once())->method("getEmail")->willReturn("test@example.com");
 
         $this->userRepository
             ->expects($this->once())
@@ -96,9 +99,9 @@ class ApplicationUserTest extends ApplicationTestCase
             ->method("edit")
             ->with($user);
 
-        $this->client->put("/user/1", ["name" => "Georges V"]);
+        $this->client->put("/user/1", ["name" => "Georges V", "email" => "test@example.com"]);
 
         $this->assertStatusEquals(201);
-        $this->assertResultEquals(["id" => 1, "name" => "Georges V"]);
+        $this->assertResultEquals(["id" => 1, "name" => "Georges V", "email" => "test@example.com"]);
     }
 }

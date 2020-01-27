@@ -58,26 +58,25 @@ class ApplicationUser extends HttpResources
     {
         $users = Repositories::instance()->forUser()->getAll();
 
-        $representation = Presentations::instance()->forUser()->allInJsonWith(
+        $presentation = Presentations::instance()->forUser()->allInJsonWith(
             $users,
             HelperParameter::getFields($req->getParam("fields"))
         );
 
-        return $this->response($res, static::STATUS_OK, $representation);
+        return $this->response($res, static::STATUS_OK, $presentation);
     }
 
     /**
      * @SWG\Post(
      *        path="/user", summary="Create a user", description="",
      * @SWG\Parameter(name="name", in="formData", required=true, type="string", description="Name"),
+     * @SWG\Parameter(name="email", in="formData", required=true, type="string", description="Email"),
      * @SWG\Response(response=201, description="")
      * )
      */
     public function post($req, $res, $args)
     {
-        $name = $req->getParam("name");
-
-        $user = new User($name);
+        $user = new User($req->getParam("name"), $req->getParam("email"));
         Repositories::instance()->forUser()->add($user);
 
         return $this->response(
@@ -97,17 +96,18 @@ class ApplicationUser extends HttpResources
      */
     public function put($req, $res, $args)
     {
-        $representation = "";
+        $presentation = "";
         $status = static::STATUS_NOT_FOUND;
 
         $user = Repositories::instance()->forUser()->get($args["id"]);
         if (!is_null($user)) {
             $user->setName($req->getParam("name"));
+            $user->setEmail($req->getParam("email"));
             Repositories::instance()->forUser()->edit($user);
-            $representation = Presentations::instance()->forUser()->inJson($user);
+            $presentation = Presentations::instance()->forUser()->inJson($user);
             $status = static::STATUS_CREATED;
         }
 
-        return $this->response($res, $status, $representation);
+        return $this->response($res, $status, $presentation);
     }
 }
