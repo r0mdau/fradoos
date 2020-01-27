@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ruleset name="Fradoos">
+    <description>My custom coding standard.</description>
+    <rule ref="PEAR">
+        <exclude name="PEAR.Commenting.FileComment"/>
+        <exclude name="PEAR.Commenting.ClassComment"/>
+        <exclude name="PEAR.Commenting.FunctionComment"/>
+        <exclude name="Generic.Commenting.DocComment"/>
+        <exclude name="Generic.Files.LineLength.TooLong"/>
+    </rule>
+    <rule ref="PEAR.NamingConventions.ValidVariableName.PrivateNoUnderscore">
+        <exclude-pattern>src/Domain/*</exclude-pattern>
+    </rule>
+</ruleset>

@@ -1,0 +1,36 @@
+<?php
+
+namespace Fradoos\Infrastructure\Repository\Doctrine;
+
+class DoctrineRepositoriesTest extends \PHPUnit\Framework\TestCase
+{
+    private $configuration;
+    private $doctrineRepositories;
+
+    public function setUp()
+    {
+        $this->configuration = [
+            "driver" => 'pdo_mysql',
+            "host" => 'mysql-fradoos',
+            "port" => '3306',
+            "user" => 'root',
+            "password" => 'test',
+            "dbname" => 'fradoos_tu',
+            "charset" => 'utf8'
+        ];
+        $this->doctrineRepositories = new DoctrineRepositories($this->configuration);
+    }
+
+    public function testForUser()
+    {
+        $this->assertInstanceOf(DoctrineRepositoryUser::class, $this->doctrineRepositories->forUser());
+    }
+
+    public function testGetEntityManager()
+    {
+        $this->assertEquals(
+            $this->doctrineRepositories->creerEntityManager($this->configuration),
+            $this->doctrineRepositories->getEntityManager()
+        );
+    }
+}

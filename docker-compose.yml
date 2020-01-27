@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+
+  mysql-fradoos:
+    image: mariadb:10.0.34
+    environment:
+      - MYSQL_ROOT_PASSWORD=test
+    volumes:
+      - ./build/data/fradoos:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_HOST=db
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=test
+    ports:
+      - 8090:80
+    links:
+      - mysql-fradoos:db
+
+  apache-fradoos:
+    image: r0mdau/buster-apache2-php7
+    volumes:
+      - ./:/srv/fradoos
+      - ./etc/apache2/fradoos.local.conf:/etc/apache2/sites-enabled/fradoos.local.conf
+      - ./build/log/apache2/fradoos.local:/var/log/apache2/fradoos.local
+      - ./build/log/fradoos.local:/tmp/log
+    ports:
+      - 8080:80
+    links:
+      - mysql-fradoos

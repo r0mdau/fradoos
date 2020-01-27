@@ -1,0 +1,62 @@
+{
+  "name": "r0mdau/fradoos",
+  "type": "project",
+  "description": "PHP DDD Skeleton using SLIM framework, Doctrine ORM and PHPUnit tests",
+  "keywords": [
+    "php",
+    "slimframework",
+    "phpunit",
+    "ddd",
+    "orm",
+    "doctrine"
+  ],
+  "homepage": "https://github.com/r0mdau/fradoos",
+  "license": "Apache-2.0",
+  "authors": [
+    {"name": "Romain Dauby", "email": "romain.dauby@gmail.com"}
+  ],
+  "autoload": {
+    "psr-4": {
+      "Fradoos\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Fradoos\\": "test/"
+    }
+  },
+  "require": {
+    "slim/slim": "3.8.1",
+    "doctrine/orm": "2.6.*",
+    "monolog/monolog": "1.22.*",
+    "zircote/swagger-php": "^2.0",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "6.2",
+    "squizlabs/php_codesniffer": "3.*"
+  },
+  "scripts": {
+    "dump-db": "doctrine orm:schema-tool:update --dump-sql",
+    "update-db": [
+      "@dump-db",
+      "doctrine orm:schema-tool:update --force"
+    ],
+    "generate-proxies": "doctrine  orm:generate-proxies",
+    "phpcs": "phpcs -s src --standard=phpcs.xml --ignore=src/routes.php",
+    "phpcbf": "phpcbf src --ignore=src/routes.php",
+    "test": [
+      "docker-compose -f docker-compose-test.yml up -d",
+      "sleep 1",
+      "phpunit",
+      "docker-compose -f docker-compose-test.yml down"
+    ],
+    "test-application": "phpunit --testsuite Application",
+    "test-domain": "phpunit --testsuite Domain",
+    "test-infrastructure": "phpunit --testsuite Infrastructure",
+    "verify": [
+      "@test",
+      "@phpcs"
+    ]
+  }
+}
