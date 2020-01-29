@@ -33,6 +33,8 @@ But for the first time you will need to create tables to run examples.
 composer update-db
 ```
 
+Phpmyadmin is available at http://localhost:8090
+
 ## Domain details
 
 - A user has a name and email, both are mandatory.

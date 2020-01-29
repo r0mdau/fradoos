@@ -26,6 +26,7 @@
     }
   },
   "require": {
+    "php": ">=7.2",
     "slim/slim": "3.12.*",
     "doctrine/orm": "2.7.*",
     "monolog/monolog": "1.22.*",
