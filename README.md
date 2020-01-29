@@ -33,6 +33,12 @@ But for the first time you will need to create tables to run examples.
 composer update-db
 ```
 
+## Domain details
+
+- A user has a name and email, both are mandatory.
+- A user work in a company but not mandatory
+- A company has a name 
+
 ## Folder structure
 
 ### Application
@@ -91,9 +97,14 @@ Mutliple composer scripts to help daily tasks.
 - [x] Upgrade Doctrine orm
 - [x] Upgrade PHPUnit
 - [ ] Add specifications
-- [ ] Add more entities to show links using doctrine (ManyToOne, OneToMany, ManyToMany, Inheritance)
 - [ ] Implement MessageLog class
 - [ ] Use abstraction of databases to test Infrastructure, perhaps sqlite in memory
 - [ ] Add entities history change management
 - [ ] Add flyway to automatically maintain database structure with new entities in other environments than local
 - [ ] Update README.md after all todos
+
+Add more entities to show links using doctrine
+- [x] ManyToOne
+- [ ] OneToMany
+- [ ] ManyToMany
+- [ ] Inheritance

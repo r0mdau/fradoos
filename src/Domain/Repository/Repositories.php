@@ -21,6 +21,8 @@ abstract class Repositories
 
     abstract public function forUser();
 
+    abstract public function forCompany();
+
     abstract public function beginTransaction();
 
     abstract public function rollback();

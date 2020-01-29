@@ -71,12 +71,17 @@ class ApplicationUser extends HttpResources
      *        path="/user", summary="Create a user", description="",
      * @SWG\Parameter(name="name", in="formData", required=true, type="string", description="Name"),
      * @SWG\Parameter(name="email", in="formData", required=true, type="string", description="Email"),
+     * @SWG\Parameter(name="company", in="formData", required=false, type="integer", description="Company"),
      * @SWG\Response(response=201, description="")
      * )
      */
     public function post($req, $res, $args)
     {
         $user = new User($req->getParam("name"), $req->getParam("email"));
+
+        $company = $req->getParam("company");
+        $user->setCompany(empty($company) ? null : Repositories::instance()->forCompany()->get($req->getParam("company")));
+
         Repositories::instance()->forUser()->add($user);
 
         return $this->response(
@@ -91,6 +96,7 @@ class ApplicationUser extends HttpResources
      * @SWG\Parameter(name="id",    in="path", required=true, type="integer", description="User id"),
      * @SWG\Parameter(name="name",  in="formData", required=true, type="string", description="Name"),
      * @SWG\Parameter(name="email", in="formData", required=true, type="string", description="Email"),
+     * @SWG\Parameter(name="company", in="formData", required=false, type="integer", description="Company"),
      * @SWG\Response(response=201,  description="")
      * )
      */
@@ -103,6 +109,10 @@ class ApplicationUser extends HttpResources
         if (!is_null($user)) {
             $user->setName($req->getParam("name"));
             $user->setEmail($req->getParam("email"));
+
+            $company = $req->getParam("company");
+            $user->setCompany(empty($company) ? null : Repositories::instance()->forCompany()->get($req->getParam("company")));
+
             Repositories::instance()->forUser()->edit($user);
             $presentation = Presentations::instance()->forUser()->inJson($user);
             $status = static::STATUS_CREATED;

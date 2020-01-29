@@ -51,7 +51,8 @@ class ApplicationUserTest extends ApplicationTestCase
         return [
             "id" => null,
             "name" => null,
-            "email" => null
+            "email" => null,
+            "company" => null,
         ];
     }
 
@@ -77,7 +78,12 @@ class ApplicationUserTest extends ApplicationTestCase
         $this->client->post("/user", ["name" => "Georges V", "email" => "test@example.com"]);
 
         $this->assertStatusEquals(201);
-        $this->assertResultEquals(["id" => 1, "name" => "Georges V", "email" => "test@example.com"]);
+        $this->assertResultEquals([
+            "id" => 1,
+            "name" => "Georges V",
+            "email" => "test@example.com",
+            "company" => ""
+        ]);
     }
 
     public function testPut()
@@ -102,6 +108,11 @@ class ApplicationUserTest extends ApplicationTestCase
         $this->client->put("/user/1", ["name" => "Georges V", "email" => "test@example.com"]);
 
         $this->assertStatusEquals(201);
-        $this->assertResultEquals(["id" => 1, "name" => "Georges V", "email" => "test@example.com"]);
+        $this->assertResultEquals([
+            "id" => 1,
+            "name" => "Georges V",
+            "email" => "test@example.com",
+            "company" => ""
+        ]);
     }
 }

@@ -3,13 +3,14 @@
 namespace Fradoos\Application\Presentation;
 
 use Fradoos\Domain\Presentation\IPresentation;
+use Fradoos\Domain\Presentation\Presentations;
 use Fradoos\Domain\User;
 
 class JsonPresentationUser extends SimpleJsonPresentation implements IPresentation
 {
-    public static $id = 'id';
     public static $name = 'name';
     public static $email = 'email';
+    public static $company = 'company';
 
     public function __construct()
     {
@@ -21,6 +22,9 @@ class JsonPresentationUser extends SimpleJsonPresentation implements IPresentati
         $this->mappings[JsonPresentationUser::$email] = function (User $object) {
             return $object->getEmail();
         };
+        $this->mappings[JsonPresentationUser::$company] = function (User $object) {
+            return is_null($object->getCompany()) ? "" : Presentations::instance()->forCompany()->inJson($object->getCompany());
+        };
     }
 
     public function allDefaultProperties()
@@ -29,6 +33,7 @@ class JsonPresentationUser extends SimpleJsonPresentation implements IPresentati
             SimpleJsonPresentation::$id,
             JsonPresentationUser::$name,
             JsonPresentationUser::$email,
+            JsonPresentationUser::$company,
         ];
     }
 }

@@ -40,6 +40,11 @@ class DoctrineRepositories extends Repositories
         return new DoctrineRepositoryUser($this->entityManager);
     }
 
+    public function forCompany()
+    {
+        return new DoctrineRepositoryCompany($this->entityManager);
+    }
+
     public function getEntityManager()
     {
         return $this->entityManager;

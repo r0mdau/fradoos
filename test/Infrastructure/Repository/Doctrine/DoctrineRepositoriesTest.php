@@ -21,6 +21,11 @@ class DoctrineRepositoriesTest extends \PHPUnit\Framework\TestCase
         $this->doctrineRepositories = new DoctrineRepositories($this->configuration);
     }
 
+    public function testForCompany()
+    {
+        $this->assertInstanceOf(DoctrineRepositoryCompany::class, $this->doctrineRepositories->forCompany());
+    }
+
     public function testForUser()
     {
         $this->assertInstanceOf(DoctrineRepositoryUser::class, $this->doctrineRepositories->forUser());

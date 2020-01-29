@@ -2,7 +2,6 @@
 
 namespace Fradoos\Infrastructure\Repository\Doctrine;
 
-use Doctrine\Common\Cache\ArrayCache;
 use Fradoos\Domain\Repository\Repositories;
 
 abstract class DoctrineRepositoryTestCase extends \PHPUnit\Framework\TestCase

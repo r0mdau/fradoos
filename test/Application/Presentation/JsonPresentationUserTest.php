@@ -8,7 +8,7 @@ class JsonPresentationUserTest extends \PHPUnit\Framework\TestCase
     {
         $representationDirection = new JsonPresentationUser();
         $this->assertSame(
-            ["id", "name", "email"],
+            ["id", "name", "email", "company"],
             $representationDirection->allDefaultProperties()
         );
     }

@@ -2,6 +2,7 @@
 
 namespace Fradoos\Domain;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Fradoos\Domain\Helper\HelperParameter;
 
 /**
@@ -20,6 +21,11 @@ class User extends Entity
      * @var $email string
      */
     private $email;
+
+    /**
+     * @var $company null|Company
+     */
+    private $company;
 
     /**
      * ApplicationUser constructor.
@@ -72,6 +78,24 @@ class User extends Entity
         HelperParameter::checkEmail($email, "The user email is not well formatted: '$1'.");
         if ($this->email != $email) {
             $this->email = $email;
+        }
+    }
+
+    /**
+     * @return Company|null
+     */
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param Company|null $company
+     */
+    public function setCompany(?Company $company)
+    {
+        if ($this->company !== $company) {
+            $this->company = $company;
         }
     }
 }
