@@ -10,7 +10,7 @@ class DoctrineRepositoryUserTest extends DoctrineRepositoryTestCase
 
     /**
      * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage Impossible to add empty user.
+     * @expectedExceptionMessage Impossible to add empty Fradoos\Domain\User.
      */
     public function testAddThrowExceptionIfNull()
     {
@@ -30,7 +30,7 @@ class DoctrineRepositoryUserTest extends DoctrineRepositoryTestCase
 
     /**
      * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage Impossible to edit empty user.
+     * @expectedExceptionMessage Impossible to edit empty Fradoos\Domain\User.
      */
     public function testEditThrowErrorIfNull()
     {
@@ -52,7 +52,7 @@ class DoctrineRepositoryUserTest extends DoctrineRepositoryTestCase
 
     /**
      * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage Impossible to get user with empty id.
+     * @expectedExceptionMessage Impossible to get Fradoos\Domain\User with empty id.
      */
     public function testGetThrowErrorIfNull()
     {
@@ -61,7 +61,7 @@ class DoctrineRepositoryUserTest extends DoctrineRepositoryTestCase
 
     /**
      * @expectedException \Fradoos\Domain\Error\ErrorEntityNotFound
-     * @expectedExceptionMessage Impossible to get user with id: 9999.
+     * @expectedExceptionMessage Impossible to get Fradoos\Domain\User with id: 9999.
      */
     public function testThrowErrorIfIdNotExist()
     {

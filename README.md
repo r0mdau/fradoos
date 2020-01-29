@@ -101,6 +101,7 @@ Mutliple composer scripts to help daily tasks.
 - [ ] Use abstraction of databases to test Infrastructure, perhaps sqlite in memory
 - [ ] Add entities history change management
 - [ ] Add flyway to automatically maintain database structure with new entities in other environments than local
+- [ ] Add Doctrine Second Level Cache
 - [ ] Update README.md after all todos
 
 Add more entities to show links using doctrine
