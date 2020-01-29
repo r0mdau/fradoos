@@ -44,7 +44,10 @@ class ApplicationUser extends HttpResources
 
         return $this->response(
             $res, static::STATUS_OK,
-            Presentations::instance()->forUser()->inJson($user)
+            Presentations::instance()->forUser()->inJsonWith(
+                $user,
+                HelperParameter::getFields($req->getParam("fields"))
+            )
         );
     }
 

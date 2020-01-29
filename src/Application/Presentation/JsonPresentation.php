@@ -75,6 +75,7 @@ abstract class JsonPresentation
     public function inJsonWith($object, $properties)
     {
         $result = [];
+        $properties = empty($properties) ? $this->allDefaultProperties() : $properties;
         foreach ($properties as $property) {
             $result[$property] = "";
             if (array_key_exists($property, $this->mappings) && !is_null($object)) {

@@ -44,7 +44,10 @@ class ApplicationCompany extends HttpResources
 
         return $this->response(
             $res, static::STATUS_OK,
-            Presentations::instance()->forCompany()->inJson($company)
+            Presentations::instance()->forCompany()->inJsonWith(
+                $company,
+                HelperParameter::getFields($req->getParam("fields"))
+            )
         );
     }
 
