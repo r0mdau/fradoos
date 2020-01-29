@@ -4,10 +4,10 @@ namespace Fradoos\Infrastructure\Repository\Doctrine;
 
 use Fradoos\Domain\Error\ErrorEntityNotFound;
 use Fradoos\Domain\Helper\HelperParameter;
-use Fradoos\Domain\Repository\RepositoryUser;
+use Fradoos\Domain\Repository\IRepositoryUser;
 use Fradoos\Domain\User;
 
-class DoctrineRepositoryUser extends DoctrineRepository implements RepositoryUser
+class DoctrineRepositoryUser extends DoctrineRepository implements IRepositoryUser
 {
     public function add($user)
     {

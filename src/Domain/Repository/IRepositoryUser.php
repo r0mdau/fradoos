@@ -2,7 +2,7 @@
 
 namespace Fradoos\Domain\Repository;
 
-interface RepositoryUser
+interface IRepositoryUser
 {
     public function add($user);
 

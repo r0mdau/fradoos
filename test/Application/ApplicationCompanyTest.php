@@ -46,14 +46,6 @@ class ApplicationCompanyTest extends ApplicationTestCase
         $this->assertResultEquals($this->companyPresentation());
     }
 
-    private function companyPresentation()
-    {
-        return [
-            "id" => null,
-            "name" => null
-        ];
-    }
-
     public function testGetAll()
     {
         $this->companyRepository->expects($this->once())->method("getAll")->willReturn(
@@ -100,5 +92,13 @@ class ApplicationCompanyTest extends ApplicationTestCase
 
         $this->assertStatusEquals(201);
         $this->assertResultEquals(["id" => 1, "name" => "Super Inc."]);
+    }
+
+    private function companyPresentation()
+    {
+        return [
+            "id" => null,
+            "name" => null
+        ];
     }
 }

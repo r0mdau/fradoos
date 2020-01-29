@@ -2,7 +2,7 @@
 
 namespace Fradoos\Application;
 
-use Fradoos\Domain\Repository\RepositoryUser;
+use Fradoos\Domain\Repository\IRepositoryUser;
 use Fradoos\Domain\User;
 
 class ApplicationUserTest extends ApplicationTestCase
@@ -13,7 +13,7 @@ class ApplicationUserTest extends ApplicationTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->userRepository = $this->getMockBuilder(RepositoryUser::class)->getMock();
+        $this->userRepository = $this->getMockBuilder(IRepositoryUser::class)->getMock();
         $this->repository->expects($this->any())->method("forUser")->willReturn($this->userRepository);
         $this->userMock = $this->getMockBuilder(User::class)->disableOriginalConstructor()->getMock();
     }
@@ -44,16 +44,6 @@ class ApplicationUserTest extends ApplicationTestCase
 
         $this->assertStatusEquals(200);
         $this->assertResultEquals($this->userPresentation());
-    }
-
-    private function userPresentation()
-    {
-        return [
-            "id" => null,
-            "name" => null,
-            "email" => null,
-            "company" => null,
-        ];
     }
 
     public function testGetAll()
@@ -114,5 +104,15 @@ class ApplicationUserTest extends ApplicationTestCase
             "email" => "test@example.com",
             "company" => ""
         ]);
+    }
+
+    private function userPresentation()
+    {
+        return [
+            "id" => null,
+            "name" => null,
+            "email" => null,
+            "company" => null,
+        ];
     }
 }

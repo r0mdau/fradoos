@@ -6,10 +6,10 @@ class JsonPresentationUserTest extends \PHPUnit\Framework\TestCase
 {
     public function testToutesLesProprietesParDefaut()
     {
-        $representationDirection = new JsonPresentationUser();
+        $presentationUser = new JsonPresentationUser();
         $this->assertSame(
             ["id", "name", "email", "company"],
-            $representationDirection->allDefaultProperties()
+            $presentationUser->allDefaultProperties()
         );
     }
 }
