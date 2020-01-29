@@ -13,10 +13,10 @@ class DoctrineRepositories extends Repositories
 
     public function __construct($configurationConnexion)
     {
-        $this->entityManager = $this->creerEntityManager($configurationConnexion);
+        $this->entityManager = $this->createEntityManager($configurationConnexion);
     }
 
-    public static function creerEntityManager($configurationConnexion)
+    public static function createEntityManager($configurationConnexion)
     {
         $configuration = new Configuration();
         $configuration->setMetadataCacheImpl(new \Doctrine\Common\Cache\ApcuCache());

@@ -1,8 +1,6 @@
 <?php
 
-namespace Fradoos\Domaine;
-
-use Fradoos\Domain\Helper\HelperObject;
+namespace Fradoos\Domain\Helper;
 
 class HelperObjectTest extends \PHPUnit\Framework\TestCase
 {

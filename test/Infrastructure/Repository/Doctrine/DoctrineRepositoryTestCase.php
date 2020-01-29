@@ -32,14 +32,15 @@ abstract class DoctrineRepositoryTestCase extends \PHPUnit\Framework\TestCase
         if (!self::$baseInitialisee) {
             self::initializeDatabase();
         }
-        $this->entityManager = DoctrineRepositories::creerEntityManager(
+        $this->entityManager = DoctrineRepositories::createEntityManager(
             [
                 'driver' => 'pdo_mysql',
                 'host' => self::$database["host"],
                 'user' => self::$database["user"],
                 'password' => self::$database["password"],
                 'dbname' => self::$database["dbname"],
-            ], new ArrayCache(), false);
+            ]
+        );
 
         $this->entityManager->beginTransaction();
 

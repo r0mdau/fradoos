@@ -29,7 +29,7 @@ class DoctrineRepositoriesTest extends \PHPUnit\Framework\TestCase
     public function testGetEntityManager()
     {
         $this->assertEquals(
-            $this->doctrineRepositories->creerEntityManager($this->configuration),
+            $this->doctrineRepositories->createEntityManager($this->configuration),
             $this->doctrineRepositories->getEntityManager()
         );
     }

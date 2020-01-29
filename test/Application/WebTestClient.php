@@ -12,15 +12,9 @@ use Slim\Http\Uri;
 
 class WebTestClient
 {
-    /** @var \Slim\App */
     public $app;
-
-    /** @var  \Slim\Http\Request */
     public $request;
-
-    /** @var  \Slim\Http\Response */
     public $response;
-
     private $cookies = [];
 
     public function __construct(App $slim)
@@ -109,9 +103,6 @@ class WebTestClient
     {
         return $this->request('head', $path, $data, $optionalHeaders);
     }
-
-    // Abstract way to make a request to SlimPHP, this allows us to mock the
-    // slim environment
 
     public function options($path, $data = [], $optionalHeaders = [])
     {

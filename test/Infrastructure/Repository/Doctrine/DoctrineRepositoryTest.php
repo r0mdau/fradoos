@@ -2,7 +2,7 @@
 
 namespace Fradoos\Infrastructure\Repository\Doctrine;
 
-class DoctrineEntrepotsTest extends \PHPUnit\Framework\TestCase
+class DoctrineRepositoryTest extends \PHPUnit\Framework\TestCase
 {
     private $configuration;
     private $doctrineEntrepots;
@@ -29,7 +29,7 @@ class DoctrineEntrepotsTest extends \PHPUnit\Framework\TestCase
     public function testGetEntityManager()
     {
         $this->assertEquals(
-            $this->doctrineEntrepots->creerEntityManager($this->configuration),
+            $this->doctrineEntrepots->createEntityManager($this->configuration),
             $this->doctrineEntrepots->getEntityManager()
         );
     }

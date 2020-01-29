@@ -10,7 +10,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 $_SERVER["APP_ENV"] = $_SERVER["APP_ENV"] ?? "development";
 $database = parse_ini_file(__DIR__ . '/config/application.' . $_SERVER["APP_ENV"] . '.ini', true)['database'];
 
-$em = DoctrineRepositories::creerEntityManager(
+$em = DoctrineRepositories::createEntityManager(
     $database,
     new ArrayCache(),
     false
