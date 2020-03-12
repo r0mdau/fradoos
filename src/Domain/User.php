@@ -2,7 +2,6 @@
 
 namespace Fradoos\Domain;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Fradoos\Domain\Helper\HelperParameter;
 
 /**

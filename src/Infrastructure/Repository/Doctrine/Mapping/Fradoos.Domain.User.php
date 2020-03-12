@@ -1,7 +1,6 @@
 <?php
 
 use Doctrine\ORM\Mapping\Builder\ClassMetadataBuilder;
-use Doctrine\ORM\Mapping\ClassMetadataInfo;
 
 $builder = new ClassMetadataBuilder($metadata);
 $builder->setTable("user");

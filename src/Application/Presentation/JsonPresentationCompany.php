@@ -2,8 +2,8 @@
 
 namespace Fradoos\Application\Presentation;
 
-use Fradoos\Domain\Presentation\IPresentation;
 use Fradoos\Domain\Company;
+use Fradoos\Domain\Presentation\IPresentation;
 
 class JsonPresentationCompany extends SimpleJsonPresentation implements IPresentation
 {

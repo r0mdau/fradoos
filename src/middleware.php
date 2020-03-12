@@ -7,8 +7,6 @@ use Fradoos\Domain\Error\ErrorEntityNotFound;
 use Fradoos\Domain\Error\ErrorParameter;
 use Fradoos\Domain\Repository\Repositories;
 
-//use Fradoos\Infrastructure\MessageLog;
-
 $app->add(
     function ($request, $response, $next) use ($app) {
         try {
@@ -16,7 +14,11 @@ $app->add(
 
             $response = $next($request, $response);
 
-            //$app->getContainer()->get("logger")->info(MessageLog::succes($app->getContainer()));
+            //var_dump($app->getContainer()->getDispatcher());exit;
+            $app->getContainer()->get("logger")->info(
+                "{$response->getStatusCode()} {$request->getMethod()} {$request->getUri()}"
+            );
+
             if (in_array($request->getMethod(), ["POST", "PUT", "DELETE", "PATCH"])) {
                 Repositories::instance()->commit();
             }
@@ -28,14 +30,16 @@ $app->add(
                 ErrorEntityAlreadyExist::class => HttpResources::STATUS_BAD_REQUEST,
             ];
 
-            $libelle = new \ReflectionClass($e);
-            $statut = array_key_exists($libelle->getName(), $map) ? $map[$libelle->getName()] : 500;
+            $label = new \ReflectionClass($e);
+            $status = array_key_exists($label->getName(), $map) ? $map[$label->getName()] : 500;
 
-            //$app->getContainer()->get("logger")->error(MessageLog::erreur($app->getContainer(), $statut, $e->getMessage()));
+            $app->getContainer()->get("logger")->error(
+                "{$status} {$request->getMethod()} {$request->getUri()}, message: {$e->getMessage()}"
+            );
             Repositories::instance()->rollback();
 
             $response = $response
-                ->withStatus($statut)
+                ->withStatus($status)
                 ->withHeader("Content-Type", "application/json")
                 ->write(json_encode(["error" => $e->getMessage()]));
         }

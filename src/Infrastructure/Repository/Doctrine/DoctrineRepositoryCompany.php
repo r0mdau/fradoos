@@ -2,9 +2,9 @@
 
 namespace Fradoos\Infrastructure\Repository\Doctrine;
 
+use Fradoos\Domain\Company;
 use Fradoos\Domain\Helper\HelperParameter;
 use Fradoos\Domain\Repository\IRepositoryCompany;
-use Fradoos\Domain\Company;
 
 class DoctrineRepositoryCompany extends SimpleDoctrineRepository implements IRepositoryCompany
 {

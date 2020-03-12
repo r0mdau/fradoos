@@ -2,10 +2,10 @@
 
 namespace Fradoos\Application;
 
+use Fradoos\Domain\Company;
 use Fradoos\Domain\Helper\HelperParameter;
 use Fradoos\Domain\Presentation\Presentations;
 use Fradoos\Domain\Repository\Repositories;
-use Fradoos\Domain\Company;
 
 class ApplicationCompany extends HttpResources
 {
