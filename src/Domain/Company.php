@@ -5,9 +5,8 @@ namespace Fradoos\Domain;
 use Fradoos\Domain\Helper\HelperParameter;
 
 /**
- * Class ApplicationCompany
- *
- * @package App\Domain
+ * Class Company
+ * @package Fradoos\Domain
  */
 class Company extends Entity
 {
@@ -17,9 +16,8 @@ class Company extends Entity
     private $name;
 
     /**
-     * ApplicationCompany constructor.
-     *
-     * @param  $name string
+     * Company constructor.
+     * @param $name
      * @throws Error\ErrorParameter
      */
     public function __construct($name)

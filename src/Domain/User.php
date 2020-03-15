@@ -5,9 +5,8 @@ namespace Fradoos\Domain;
 use Fradoos\Domain\Helper\HelperParameter;
 
 /**
- * Class ApplicationUser
- *
- * @package App\Domain
+ * Class User
+ * @package Fradoos\Domain
  */
 class User extends Entity
 {
@@ -27,10 +26,9 @@ class User extends Entity
     private $company;
 
     /**
-     * ApplicationUser constructor.
-     *
-     * @param  $name string
-     * @param $email string
+     * User constructor.
+     * @param $name
+     * @param $email
      * @throws Error\ErrorParameter
      */
     public function __construct($name, $email)
