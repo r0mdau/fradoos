@@ -99,7 +99,7 @@ Mutliple composer scripts to help daily tasks.
 - [x] Upgrade Doctrine orm
 - [x] Upgrade PHPUnit
 - [ ] Add specifications
-- [ ] Implement MessageLog class
+- [x] Implement MessageLog class
 - [ ] Use abstraction of databases to test Infrastructure, perhaps sqlite in memory
 - [ ] Add entities history change management
 - [ ] Add flyway to automatically maintain database structure with new entities in other environments than local
