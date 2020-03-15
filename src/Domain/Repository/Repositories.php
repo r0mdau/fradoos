@@ -23,6 +23,8 @@ abstract class Repositories
 
     abstract public function forCompany();
 
+    abstract public function forWorkingGroup();
+
     abstract public function beginTransaction();
 
     abstract public function rollback();

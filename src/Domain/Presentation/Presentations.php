@@ -34,4 +34,6 @@ abstract class Presentations
      * @return mixed
      */
     abstract public function forUser();
+    abstract public function forCompany();
+    abstract public function forWorkingGroup();
 }

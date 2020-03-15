@@ -21,4 +21,12 @@ class JsonPresentations extends Presentations
     {
         return new JsonPresentationCompany();
     }
+
+    /**
+     * @return JsonPresentationWorkingGroup
+     */
+    public function forWorkingGroup()
+    {
+        return new JsonPresentationWorkingGroup();
+    }
 }

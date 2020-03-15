@@ -35,14 +35,28 @@ class DoctrineRepositories extends Repositories
         return EntityManager::create($configurationConnexion, $configuration);
     }
 
+    /**
+     * @return DoctrineRepositoryUser
+     */
     public function forUser()
     {
         return new DoctrineRepositoryUser($this->entityManager);
     }
 
+    /**
+     * @return DoctrineRepositoryCompany
+     */
     public function forCompany()
     {
         return new DoctrineRepositoryCompany($this->entityManager);
+    }
+
+    /**
+     * @return DoctrineRepositoryWorkingGroup
+     */
+    public function forWorkingGroup()
+    {
+        return new DoctrineRepositoryWorkingGroup($this->entityManager);
     }
 
     public function getEntityManager()

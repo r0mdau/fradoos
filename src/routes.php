@@ -1,6 +1,6 @@
 <?php
 
-use Fradoos\Application\{ApplicationCompany, ApplicationUser, Swagger};
+use Fradoos\Application\{ApplicationCompany, ApplicationUser, ApplicationWorkingGroup, Swagger};
 
 $id = "{id:\d+}";
 
@@ -19,3 +19,9 @@ $app->post("/user", function ($req, $res, $args) {return ApplicationUser::instan
 $app->get("/user/$id", function ($req, $res, $args) {return ApplicationUser::instance()->get($req, $res, $args);});
 $app->put("/user/$id", function ($req, $res, $args) {return ApplicationUser::instance()->put($req, $res, $args);});
 $app->delete("/user/$id", function ($req, $res, $args) {return ApplicationUser::instance()->delete($req, $res, $args);});
+
+$app->get("/workingGroup", function ($req, $res, $args) {return ApplicationWorkingGroup::instance()->getAll($req, $res, $args);});
+$app->post("/workingGroup", function ($req, $res, $args) {return ApplicationWorkingGroup::instance()->post($req, $res, $args);});
+$app->get("/workingGroup/$id", function ($req, $res, $args) {return ApplicationWorkingGroup::instance()->get($req, $res, $args);});
+$app->put("/workingGroup/$id", function ($req, $res, $args) {return ApplicationWorkingGroup::instance()->put($req, $res, $args);});
+$app->delete("/workingGroup/$id", function ($req, $res, $args) {return ApplicationWorkingGroup::instance()->delete($req, $res, $args);});
