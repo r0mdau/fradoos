@@ -9,7 +9,8 @@ using :
 - [Doctrine ORM](https://www.doctrine-project.org)
 - [PHPunit](https://phpunit.de/) tests.
 
-This demo project is under development. See todolist below.
+This demo project is under development. See todolist below. I mention commits in front of todo items to see the minimum
+diff of code to produce to make it working.
 
 ## Quickstart
 
@@ -99,11 +100,14 @@ composer test
 Mutliple composer scripts to help daily tasks.
 
 ## TODOs
-- [x] Upgrade slimframework
-- [x] Upgrade Doctrine orm
-- [x] Upgrade PHPUnit
+
+Click on commit id to see changes
+
+- [x] [75eddfe](https://github.com/r0mdau/fradoos/commit/75eddfe458ad039f23e19352e72ccef5eaa5cc55) Upgrade slimframework 
+- [x] [75eddfe](https://github.com/r0mdau/fradoos/commit/75eddfe458ad039f23e19352e72ccef5eaa5cc55) Upgrade Doctrine orm
+- [x] [75eddfe](https://github.com/r0mdau/fradoos/commit/75eddfe458ad039f23e19352e72ccef5eaa5cc55) Upgrade PHPUnit
 - [ ] Add specifications
-- [x] Implement MessageLog class
+- [x] [f6c467e](https://github.com/r0mdau/fradoos/commit/f6c467e333580c6f100815ee1d7e3fd323ae2279) Implement MessageLog class
 - [ ] Use abstraction of databases to test Infrastructure, perhaps sqlite in memory
 - [ ] Add entities history change management
 - [ ] Add flyway to automatically maintain database structure with new entities in other environments than local
@@ -112,7 +116,8 @@ Mutliple composer scripts to help daily tasks.
 - [ ] Update README.md after all todos
 
 Add more entities to show links using doctrine
-- [x] ManyToOne
+- [x] [1b92c10](https://github.com/r0mdau/fradoos/commit/1b92c102456ec90c9a7f019872827db85a94e596) ManyToOne
 - [ ] OneToMany
-- [x] ManyToMany
+- [x] [5eff472](https://github.com/r0mdau/fradoos/commit/5eff472f7a3c2125bbf07feba4b5de5af19ea895) Simple CRUD : associated with ManyToMany below
+- [x] [8a7584f](https://github.com/r0mdau/fradoos/commit/8a7584f80ec2354fdf65370766331d33680cf2ff) ManyToMany
 - [ ] Inheritance
