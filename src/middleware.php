@@ -14,7 +14,6 @@ $app->add(
 
             $response = $next($request, $response);
 
-            //var_dump($app->getContainer()->getDispatcher());exit;
             $app->getContainer()->get("logger")->info(
                 "{$response->getStatusCode()} {$request->getMethod()} {$request->getUri()}"
             );

@@ -28,13 +28,40 @@ Then start the project :
 ```bash
 ./run.sh
 ```
+Phpmyadmin is available at http://localhost:8090
 
 But for the first time you will need to create tables to run examples.
 ```bash
 composer update-db
 ```
 
-Phpmyadmin is available at http://localhost:8090
+To launch unit tests, check code style and flush out bugs, run
+```bash
+composer verify
+```
+
+### CRUD client examples
+Working Group CRUD
+```bash
+curl -XPOST fradoos.local:8080/workingGroup -d "name=ceo"
+curl -XGET fradoos.local:8080/workingGroup/1
+curl -XPUT fradoos.local:8080/workingGroup/1 -d "name=cto"
+curl -XDELETE fradoos.local:8080/workingGroup/1
+```
+
+Create user adding a company
+```bash
+#create company
+curl -XPOST fradoos.local:8080/company -d "name=bigbossindustry"
+#create user with previous company
+curl -XPOST fradoos.local:8080/user -d "name=toto&email=ko@email.fr&company=1"
+```
+
+Add working groups to user
+```bash
+curl -XPUT fradoos.local:8080/user/1 -d "name=toto&email=ko@email.fr&company=2&workingGroups[]=1&workingGroups[]=2"
+```
+
 
 ## Domain details
 
