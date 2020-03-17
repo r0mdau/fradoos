@@ -13,7 +13,10 @@
   "homepage": "https://github.com/r0mdau/fradoos",
   "license": "Apache-2.0",
   "authors": [
-    {"name": "Romain Dauby", "email": "romain.dauby@gmail.com"}
+    {
+      "name": "Romain Dauby",
+      "email": "romain.dauby@gmail.com"
+    }
   ],
   "autoload": {
     "psr-4": {
@@ -47,7 +50,10 @@
     "generate-proxies": "doctrine  orm:generate-proxies",
     "phpcs": "phpcs -s src --standard=phpcs.xml --ignore=src/routes.php",
     "phpcbf": "phpcbf src --ignore=src/routes.php",
-    "phpstan": "phpstan analyse src test",
+    "phpstan": [
+      "phpstan analyse -l5 src",
+      "phpstan analyse -l4 test"
+    ],
     "test": "phpunit",
     "test-application": "phpunit --testsuite Application",
     "test-domain": "phpunit --testsuite Domain",

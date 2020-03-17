@@ -2,6 +2,8 @@
 
 namespace Fradoos\Application;
 
+use App\Domaine\Entrepot\Entrepots;
+use Doctrine\Common\Collections\ArrayCollection;
 use Fradoos\Domain\Helper\HelperParameter;
 use Fradoos\Domain\Presentation\Presentations;
 use Fradoos\Domain\Repository\Repositories;
@@ -75,6 +77,7 @@ class ApplicationUser extends HttpResources
      * @SWG\Parameter(name="name", in="formData", required=true, type="string", description="Name"),
      * @SWG\Parameter(name="email", in="formData", required=true, type="string", description="Email"),
      * @SWG\Parameter(name="company", in="formData", required=false, type="integer", description="Company"),
+     * @SWG\Parameter(name="workingGroups", in="formData", required=false, type="array", items="string", description="Working Groups"),
      * @SWG\Response(response=201, description="")
      * )
      */
@@ -85,6 +88,17 @@ class ApplicationUser extends HttpResources
         $company = $req->getParam("company");
         $user->setCompany(empty($company) ? null : Repositories::instance()->forCompany()->get($req->getParam("company")));
 
+        if (!empty($req->getParam("workingGroups"))) {
+            $user->setWorkingGroups(
+                new ArrayCollection(
+                    array_map(
+                        function ($workingGroupId) {
+                            return Repositories::instance()->forWorkingGroup()->get($workingGroupId);
+                        }, $req->getParam("workingGroups")
+                    )
+                )
+            );
+        }
         Repositories::instance()->forUser()->add($user);
 
         return $this->response(
@@ -100,6 +114,7 @@ class ApplicationUser extends HttpResources
      * @SWG\Parameter(name="name",  in="formData", required=true, type="string", description="Name"),
      * @SWG\Parameter(name="email", in="formData", required=true, type="string", description="Email"),
      * @SWG\Parameter(name="company", in="formData", required=false, type="integer", description="Company"),
+     * @SWG\Parameter(name="workingGroups", in="formData", required=false, type="array", items="string", description="Working Groups"),
      * @SWG\Response(response=201,  description="")
      * )
      */
@@ -115,6 +130,18 @@ class ApplicationUser extends HttpResources
 
             $company = $req->getParam("company");
             $user->setCompany(empty($company) ? null : Repositories::instance()->forCompany()->get($req->getParam("company")));
+
+            if (!empty($req->getParam("workingGroups"))) {
+                $user->setWorkingGroups(
+                    new ArrayCollection(
+                        array_map(
+                            function ($workingGroupId) {
+                                return Repositories::instance()->forWorkingGroup()->get($workingGroupId);
+                            }, $req->getParam("workingGroups")
+                        )
+                    )
+                );
+            }
 
             Repositories::instance()->forUser()->edit($user);
             $presentation = Presentations::instance()->forUser()->inJson($user);

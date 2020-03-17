@@ -39,7 +39,11 @@ Phpmyadmin is available at http://localhost:8090
 
 - A user has a name and email, both are mandatory.
 - A user work in a company but not mandatory
+- A user can belong to many working groups
+- A working group can belong to many users
+- We can retrieve user's working groups, but not the opposite
 - A company has a name 
+- A working group has a name 
 
 ## Folder structure
 
@@ -104,10 +108,11 @@ Mutliple composer scripts to help daily tasks.
 - [ ] Add entities history change management
 - [ ] Add flyway to automatically maintain database structure with new entities in other environments than local
 - [ ] Add Doctrine Second Level Cache
+- [ ] Mermaid class diagram
 - [ ] Update README.md after all todos
 
 Add more entities to show links using doctrine
 - [x] ManyToOne
 - [ ] OneToMany
-- [ ] ManyToMany
+- [x] ManyToMany
 - [ ] Inheritance

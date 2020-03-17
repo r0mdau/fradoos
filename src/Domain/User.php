@@ -2,7 +2,9 @@
 
 namespace Fradoos\Domain;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Fradoos\Domain\Helper\HelperParameter;
+use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * Class User
@@ -26,6 +28,11 @@ class User extends Entity
     private $company;
 
     /**
+     * @var $workingGroups null|ArrayCollection
+     */
+    private $workingGroups;
+
+    /**
      * User constructor.
      * @param $name
      * @param $email
@@ -35,6 +42,7 @@ class User extends Entity
     {
         $this->setName($name);
         $this->setEmail($email);
+        $this->workingGroups = new ArrayCollection();
     }
 
     /**
@@ -93,6 +101,34 @@ class User extends Entity
     {
         if ($this->company !== $company) {
             $this->company = $company;
+        }
+    }
+
+    /**
+     * @return ArrayCollection|null
+     */
+    public function getWorkingGroups()
+    {
+        return $this->workingGroups;
+    }
+
+    /**
+     * @param WorkingGroup|MockObject $workingGroup
+     */
+    public function addWorkingGroup(WorkingGroup $workingGroup)
+    {
+        if (!$this->workingGroups->contains($workingGroup)) {
+            $this->workingGroups->add($workingGroup);
+        }
+    }
+
+    /**
+     * @param ArrayCollection $workingGroups
+     */
+    public function setWorkingGroups(ArrayCollection $workingGroups)
+    {
+        if ($this->workingGroups != $workingGroups) {
+            $this->workingGroups = $workingGroups;
         }
     }
 }

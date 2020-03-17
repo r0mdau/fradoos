@@ -11,6 +11,7 @@ class JsonPresentationUser extends SimpleJsonPresentation implements IPresentati
     public static $name = 'name';
     public static $email = 'email';
     public static $company = 'company';
+    public static $workingGroups = 'workingGroups';
 
     public function __construct()
     {
@@ -25,6 +26,9 @@ class JsonPresentationUser extends SimpleJsonPresentation implements IPresentati
         $this->mappings[JsonPresentationUser::$company] = function (User $object) {
             return is_null($object->getCompany()) ? "" : Presentations::instance()->forCompany()->inJson($object->getCompany());
         };
+        $this->mappings[JsonPresentationUser::$workingGroups] = function (User $object) {
+            return $object->getWorkingGroups()->isEmpty() ? "" : Presentations::instance()->forWorkingGroup()->allInJson($object->getWorkingGroups());
+        };
     }
 
     public function allDefaultProperties()
@@ -34,6 +38,7 @@ class JsonPresentationUser extends SimpleJsonPresentation implements IPresentati
             JsonPresentationUser::$name,
             JsonPresentationUser::$email,
             JsonPresentationUser::$company,
+            JsonPresentationUser::$workingGroups,
         ];
     }
 }

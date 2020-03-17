@@ -2,6 +2,7 @@
 
 namespace Fradoos\Application;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Fradoos\Domain\Repository\IRepositoryUser;
 use Fradoos\Domain\User;
 
@@ -16,6 +17,12 @@ class ApplicationUserTest extends ApplicationTestCase
         $this->userRepository = $this->getMockBuilder(IRepositoryUser::class)->getMock();
         $this->repository->expects($this->any())->method("forUser")->willReturn($this->userRepository);
         $this->userMock = $this->getMockBuilder(User::class)->disableOriginalConstructor()->getMock();
+        $this->userMock->expects($this->any())->method("setName")->with("Georges V");
+        $this->userMock->expects($this->any())->method("setEmail")->with("test@example.com");
+        $this->userMock->expects($this->any())->method("getId")->willReturn(1);
+        $this->userMock->expects($this->any())->method("getName")->willReturn("Georges V");
+        $this->userMock->expects($this->any())->method("getEmail")->willReturn("test@example.com");
+        $this->userMock->expects($this->any())->method("getWorkingGroups")->willReturn(new ArrayCollection());
     }
 
     public function testInstance()
@@ -68,51 +75,35 @@ class ApplicationUserTest extends ApplicationTestCase
         $this->client->post("/user", ["name" => "Georges V", "email" => "test@example.com"]);
 
         $this->assertStatusEquals(201);
-        $this->assertResultEquals([
-            "id" => 1,
-            "name" => "Georges V",
-            "email" => "test@example.com",
-            "company" => ""
-        ]);
+        $this->assertResultEquals($this->userPresentation());
     }
 
     public function testPut()
     {
-        $user = $this->getMockBuilder(User::class)->disableOriginalConstructor()->getMock();
-        $user->expects($this->once())->method("setName")->with("Georges V");
-        $user->expects($this->once())->method("setEmail")->with("test@example.com");
-        $user->expects($this->once())->method("getId")->willReturn(1);
-        $user->expects($this->once())->method("getName")->willReturn("Georges V");
-        $user->expects($this->once())->method("getEmail")->willReturn("test@example.com");
-
         $this->userRepository
             ->expects($this->once())
             ->method("get")
             ->with(1)
-            ->willReturn($user);
+            ->willReturn($this->userMock);
         $this->userRepository
             ->expects($this->once())
             ->method("edit")
-            ->with($user);
+            ->with($this->userMock);
 
         $this->client->put("/user/1", ["name" => "Georges V", "email" => "test@example.com"]);
 
         $this->assertStatusEquals(201);
-        $this->assertResultEquals([
-            "id" => 1,
-            "name" => "Georges V",
-            "email" => "test@example.com",
-            "company" => ""
-        ]);
+        $this->assertResultEquals($this->userPresentation());
     }
 
     private function userPresentation()
     {
         return [
-            "id" => null,
-            "name" => null,
-            "email" => null,
-            "company" => null,
+            "id" => 1,
+            "name" => "Georges V",
+            "email" => "test@example.com",
+            "company" => "",
+            "workingGroups" => ""
         ];
     }
 }
