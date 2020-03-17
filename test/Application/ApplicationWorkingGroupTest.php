@@ -2,8 +2,8 @@
 
 namespace Fradoos\Application;
 
-use Fradoos\Domain\WorkingGroup;
 use Fradoos\Domain\Repository\IRepositoryWorkingGroup;
+use Fradoos\Domain\WorkingGroup;
 
 class ApplicationWorkingGroupTest extends ApplicationTestCase
 {

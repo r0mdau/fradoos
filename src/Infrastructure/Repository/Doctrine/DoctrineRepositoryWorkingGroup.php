@@ -2,9 +2,9 @@
 
 namespace Fradoos\Infrastructure\Repository\Doctrine;
 
-use Fradoos\Domain\WorkingGroup;
 use Fradoos\Domain\Helper\HelperParameter;
 use Fradoos\Domain\Repository\IRepositoryWorkingGroup;
+use Fradoos\Domain\WorkingGroup;
 
 class DoctrineRepositoryWorkingGroup extends SimpleDoctrineRepository implements IRepositoryWorkingGroup
 {

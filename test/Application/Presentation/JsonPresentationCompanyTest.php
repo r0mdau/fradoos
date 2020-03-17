@@ -4,7 +4,7 @@ namespace Fradoos\Application\Presentation;
 
 class JsonPresentationCompanyTest extends \PHPUnit\Framework\TestCase
 {
-    public function testToutesLesProprietesParDefaut()
+    public function testAllDefaultProperties()
     {
         $presentationCompany = new JsonPresentationCompany();
         $this->assertSame(
