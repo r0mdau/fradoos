@@ -29,7 +29,7 @@
     }
   },
   "require": {
-    "php": ">=7.2",
+    "php": ">=7.4",
     "slim/slim": "3.12.*",
     "doctrine/orm": "2.7.*",
     "monolog/monolog": "2.0.*",
@@ -42,8 +42,10 @@
     "phpstan/phpstan": "0.12.*"
   },
   "scripts": {
+    "create-db": "mysql -h::1 -uroot -ptest -e \"create database if not exists fradoos;\"",
     "dump-db": "doctrine orm:schema-tool:update --dump-sql",
     "update-db": [
+      "@create-db",
       "@dump-db",
       "doctrine orm:schema-tool:update --force"
     ],
@@ -63,5 +65,10 @@
       "@phpstan",
       "@phpcs"
     ]
+  },
+  "config": {
+    "allow-plugins": {
+      "ocramius/package-versions": true
+    }
   }
 }

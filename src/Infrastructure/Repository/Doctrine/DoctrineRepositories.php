@@ -2,9 +2,9 @@
 
 namespace Fradoos\Infrastructure\Repository\Doctrine;
 
-use Doctrine\Common\Persistence\Mapping\Driver\PHPDriver;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
+use Doctrine\Persistence\Mapping\Driver\PHPDriver;
 use Fradoos\Domain\Repository\Repositories;
 
 class DoctrineRepositories extends Repositories
