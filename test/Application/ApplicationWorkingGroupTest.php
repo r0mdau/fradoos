@@ -10,7 +10,7 @@ class ApplicationWorkingGroupTest extends ApplicationTestCase
     private $workingGroupRepository;
     private $workingGroupMock;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->workingGroupRepository = $this->getMockBuilder(IRepositoryWorkingGroup::class)->getMock();

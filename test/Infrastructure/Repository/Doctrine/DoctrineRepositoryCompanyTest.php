@@ -3,17 +3,18 @@
 namespace Fradoos\Infrastructure\Repository\Doctrine;
 
 use Fradoos\Domain\Company;
+use Fradoos\Domain\Error\ErrorEntityNotFound;
+use Fradoos\Domain\Error\ErrorParameter;
 
 class DoctrineRepositoryCompanyTest extends DoctrineRepositoryTestCase
 {
     private $companyRepository;
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage Impossible to add empty Fradoos\Domain\Company.
-     */
     public function testAddThrowExceptionIfNull()
     {
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("Impossible to add empty Fradoos\Domain\Company.");
+
         $this->companyRepository->add(null);
     }
 
@@ -28,12 +29,11 @@ class DoctrineRepositoryCompanyTest extends DoctrineRepositoryTestCase
         $this->assertEquals($company, $result);
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage Impossible to edit empty Fradoos\Domain\Company.
-     */
     public function testEditThrowErrorIfNull()
     {
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("Impossible to edit empty Fradoos\Domain\Company.");
+
         $this->companyRepository->edit(null);
     }
 
@@ -50,21 +50,19 @@ class DoctrineRepositoryCompanyTest extends DoctrineRepositoryTestCase
         $this->assertEquals($company, $result);
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage Impossible to get Fradoos\Domain\Company with empty id.
-     */
     public function testGetThrowErrorIfNull()
     {
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("Impossible to get Fradoos\Domain\Company with empty id.");
+
         $this->companyRepository->get(null);
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorEntityNotFound
-     * @expectedExceptionMessage Impossible to get Fradoos\Domain\Company with id: 9999.
-     */
     public function testThrowErrorIfIdNotExist()
     {
+        $this->expectException(ErrorEntityNotFound::class);
+        $this->expectExceptionMessage("Impossible to get Fradoos\Domain\Company with id: 9999.");
+
         $this->companyRepository->get(9999);
     }
 
@@ -97,7 +95,7 @@ class DoctrineRepositoryCompanyTest extends DoctrineRepositoryTestCase
         $this->assertTrue($result[0] instanceof Company);
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->companyRepository = new DoctrineRepositoryCompany($this->entityManager);

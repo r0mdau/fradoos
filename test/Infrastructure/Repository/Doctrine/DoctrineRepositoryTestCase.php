@@ -22,7 +22,7 @@ abstract class DoctrineRepositoryTestCase extends \PHPUnit\Framework\TestCase
         }
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $_SERVER["APP_ENV"] = "test";
@@ -69,7 +69,7 @@ abstract class DoctrineRepositoryTestCase extends \PHPUnit\Framework\TestCase
         return escapeshellarg(__DIR__);
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
         $this->entityManager->rollback();

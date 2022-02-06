@@ -7,7 +7,7 @@ class DoctrineRepositoriesTest extends \PHPUnit\Framework\TestCase
     private $configuration;
     private $doctrineRepositories;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->configuration = [
             "driver" => 'pdo_mysql',

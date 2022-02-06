@@ -2,6 +2,8 @@
 
 namespace Fradoos\Domain\Helper;
 
+use Fradoos\Domain\Error\ErrorParameter;
+
 class HelperParameterTest extends \PHPUnit\Framework\TestCase
 {
     public function testGetFieldsReturnNullIfFieldsNull()
@@ -19,31 +21,28 @@ class HelperParameterTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(array('id', 'nom', 'prenom'), HelperParameter::getFields('id,nom,prenom'));
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage Erreur connue
-     */
     public function testCheckNonVideThrowErrorIfParametreVide()
     {
-        HelperParameter::checkNotEmpty('', 'Erreur connue');
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("Known error");
+
+        HelperParameter::checkNotEmpty('', 'Known error');
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage Erreur encore connue
-     */
     public function testCheckNonVideThrowErrorIfParametreNull()
     {
-        HelperParameter::checkNotEmpty(null, 'Erreur encore connue');
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("Still known error");
+
+        HelperParameter::checkNotEmpty(null, 'Still known error');
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage Erreur encore connue
-     */
     public function testCheckNonVideThrowErrorIfParametreTableauVide()
     {
-        HelperParameter::checkNotEmpty(array(), 'Erreur encore connue');
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("Still known error");
+
+        HelperParameter::checkNotEmpty(array(), 'Still known error');
         $this->assertFalse($this->hasExpectationOnOutput());
     }
 }

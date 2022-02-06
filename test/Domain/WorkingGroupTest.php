@@ -2,6 +2,8 @@
 
 namespace Fradoos\Domain;
 
+use Fradoos\Domain\Error\ErrorParameter;
+
 class WorkingGroupTest extends \PHPUnit\Framework\TestCase
 {
     public function testConstruct()
@@ -11,12 +13,11 @@ class WorkingGroupTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals("Georges VI", $group->getName());
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage The workingGroup name is mandatory.
-     */
     public function testConstructThrowErrorIfNameIsEmpty()
     {
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("The workingGroup name is mandatory.");
+
         new WorkingGroup("");
     }
 
@@ -29,12 +30,11 @@ class WorkingGroupTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals("Georges V", $group->getName());
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage The workingGroup name is mandatory.
-     */
     public function testSetNameThrowErrorIfNull()
     {
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("The workingGroup name is mandatory.");
+
         $group = new WorkingGroup("Georges VI");
         $group->setName("");
     }

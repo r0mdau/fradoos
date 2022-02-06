@@ -2,18 +2,19 @@
 
 namespace Fradoos\Infrastructure\Repository\Doctrine;
 
+use Fradoos\Domain\Error\ErrorEntityNotFound;
+use Fradoos\Domain\Error\ErrorParameter;
 use Fradoos\Domain\User;
 
 class DoctrineRepositoryUserTest extends DoctrineRepositoryTestCase
 {
     private $userRepository;
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage Impossible to add empty Fradoos\Domain\User.
-     */
     public function testAddThrowExceptionIfNull()
     {
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("Impossible to add empty Fradoos\Domain\User.");
+
         $this->userRepository->add(null);
     }
 
@@ -28,12 +29,11 @@ class DoctrineRepositoryUserTest extends DoctrineRepositoryTestCase
         $this->assertEquals($user, $result);
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage Impossible to edit empty Fradoos\Domain\User.
-     */
     public function testEditThrowErrorIfNull()
     {
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("Impossible to edit empty Fradoos\Domain\User.");
+
         $this->userRepository->edit(null);
     }
 
@@ -50,21 +50,19 @@ class DoctrineRepositoryUserTest extends DoctrineRepositoryTestCase
         $this->assertEquals($user, $result);
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage Impossible to get Fradoos\Domain\User with empty id.
-     */
     public function testGetThrowErrorIfNull()
     {
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("Impossible to get Fradoos\Domain\User with empty id.");
+
         $this->userRepository->get(null);
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorEntityNotFound
-     * @expectedExceptionMessage Impossible to get Fradoos\Domain\User with id: 9999.
-     */
     public function testThrowErrorIfIdNotExist()
     {
+        $this->expectException(ErrorEntityNotFound::class);
+        $this->expectExceptionMessage("Impossible to get Fradoos\Domain\User with id: 9999.");
+
         $this->userRepository->get(9999);
     }
 
@@ -97,7 +95,7 @@ class DoctrineRepositoryUserTest extends DoctrineRepositoryTestCase
         $this->assertTrue($result[0] instanceof User);
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->userRepository = new DoctrineRepositoryUser($this->entityManager);

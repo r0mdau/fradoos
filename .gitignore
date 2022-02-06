@@ -4,3 +4,4 @@
 .settings/
 /generated/
 /build/
+.phpunit.result.cache

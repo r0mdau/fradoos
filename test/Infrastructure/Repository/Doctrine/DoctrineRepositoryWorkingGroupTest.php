@@ -2,18 +2,19 @@
 
 namespace Fradoos\Infrastructure\Repository\Doctrine;
 
+use Fradoos\Domain\Error\ErrorEntityNotFound;
+use Fradoos\Domain\Error\ErrorParameter;
 use Fradoos\Domain\WorkingGroup;
 
 class DoctrineRepositoryWorkingGroupTest extends DoctrineRepositoryTestCase
 {
     private $groupRepository;
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage Impossible to add empty Fradoos\Domain\WorkingGroup.
-     */
     public function testAddThrowExceptionIfNull()
     {
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("Impossible to add empty Fradoos\Domain\WorkingGroup.");
+
         $this->groupRepository->add(null);
     }
 
@@ -28,12 +29,11 @@ class DoctrineRepositoryWorkingGroupTest extends DoctrineRepositoryTestCase
         $this->assertEquals($group, $result);
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage Impossible to edit empty Fradoos\Domain\WorkingGroup.
-     */
     public function testEditThrowErrorIfNull()
     {
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("Impossible to edit empty Fradoos\Domain\WorkingGroup.");
+
         $this->groupRepository->edit(null);
     }
 
@@ -50,21 +50,19 @@ class DoctrineRepositoryWorkingGroupTest extends DoctrineRepositoryTestCase
         $this->assertEquals($group, $result);
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage Impossible to get Fradoos\Domain\WorkingGroup with empty id.
-     */
     public function testGetThrowErrorIfNull()
     {
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("Impossible to get Fradoos\Domain\WorkingGroup with empty id.");
+
         $this->groupRepository->get(null);
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorEntityNotFound
-     * @expectedExceptionMessage Impossible to get Fradoos\Domain\WorkingGroup with id: 9999.
-     */
     public function testThrowErrorIfIdNotExist()
     {
+        $this->expectException(ErrorEntityNotFound::class);
+        $this->expectExceptionMessage("Impossible to get Fradoos\Domain\WorkingGroup with id: 9999.");
+
         $this->groupRepository->get(9999);
     }
 
@@ -97,7 +95,7 @@ class DoctrineRepositoryWorkingGroupTest extends DoctrineRepositoryTestCase
         $this->assertTrue($result[0] instanceof WorkingGroup);
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->groupRepository = new DoctrineRepositoryWorkingGroup($this->entityManager);

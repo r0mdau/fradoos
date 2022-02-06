@@ -10,7 +10,7 @@ class ApplicationCompanyTest extends ApplicationTestCase
     private $companyRepository;
     private $companyMock;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->companyRepository = $this->getMockBuilder(IRepositoryCompany::class)->getMock();

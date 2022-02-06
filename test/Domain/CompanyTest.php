@@ -2,6 +2,8 @@
 
 namespace Fradoos\Domain;
 
+use Fradoos\Domain\Error\ErrorParameter;
+
 class CompanyTest extends \PHPUnit\Framework\TestCase
 {
     public function testConstruct()
@@ -11,12 +13,10 @@ class CompanyTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals("Georges VI", $company->getName());
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage The company name is mandatory.
-     */
     public function testConstructThrowErrorIfNameIsEmpty()
-    {
+    {        
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("The company name is mandatory.");
         new Company("");
     }
 
@@ -28,13 +28,11 @@ class CompanyTest extends \PHPUnit\Framework\TestCase
         $company->setName("Georges V");
         $this->assertEquals("Georges V", $company->getName());
     }
-
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage The company name is mandatory.
-     */
+    
     public function testSetNameThrowErrorIfNull()
     {
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("The company name is mandatory.");
         $company = new Company("Georges VI");
         $company->setName("");
     }

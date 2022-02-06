@@ -11,7 +11,7 @@ class ApplicationUserTest extends ApplicationTestCase
     private $userRepository;
     private $userMock;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->userRepository = $this->getMockBuilder(IRepositoryUser::class)->getMock();

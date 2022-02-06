@@ -14,7 +14,7 @@ abstract class ApplicationTestCase extends \PHPUnit\Framework\TestCase
     protected $client;
     protected $app;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->app = $this->getSlimInstance();

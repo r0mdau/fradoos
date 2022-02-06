@@ -3,6 +3,7 @@
 namespace Fradoos\Domain;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Fradoos\Domain\Error\ErrorParameter;
 
 class UserTest extends \PHPUnit\Framework\TestCase
 {
@@ -20,21 +21,19 @@ class UserTest extends \PHPUnit\Framework\TestCase
         $this->assertCount(0, $user->getWorkingGroups());
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage The user name is mandatory.
-     */
     public function testConstructThrowErrorIfNameIsEmpty()
     {
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("The user name is mandatory.");
+
         new User("", "test@example.com");
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage The user email is mandatory.
-     */
     public function testConstructThrowErrorIfEmailIsEmpty()
     {
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("The user email is mandatory.");
+
         new User("Georges V", "");
     }
 
@@ -47,12 +46,11 @@ class UserTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals("Georges V", $user->getName());
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage The user name is mandatory.
-     */
     public function testSetNameThrowErrorIfNull()
     {
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("The user name is mandatory.");
+
         $user = new User("Georges VI", "test@example.com");
         $user->setName("");
     }
@@ -66,12 +64,11 @@ class UserTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals("new@example.com", $user->getEmail());
     }
 
-    /**
-     * @expectedException \Fradoos\Domain\Error\ErrorParameter
-     * @expectedExceptionMessage The user email is mandatory.
-     */
     public function testSetEmailThrowErrorIfNull()
     {
+        $this->expectException(ErrorParameter::class);
+        $this->expectExceptionMessage("The user email is mandatory.");
+
         $user = new User("Georges VI", "test@example.com");
         $user->setEmail("");
     }
