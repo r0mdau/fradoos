@@ -5,7 +5,7 @@ using :
 - Hexagonal Architecture
 - Domain Driven Design
 - PHP
-- [Slim micro framework](http://www.slimframework.com/) 
+- [Slim micro framework](http://www.slimframework.com/)
 - [Doctrine ORM](https://www.doctrine-project.org)
 - [PHPunit](https://phpunit.de/) tests.
 
@@ -14,7 +14,7 @@ diff of code to produce to make it working.
 
 ## Quickstart
 
-Prerequisites : 
+Prerequisites :
 - plenty php7 packages
 - [composer](https://getcomposer.org/)
 - [docker](https://www.docker.com/)
@@ -24,13 +24,23 @@ Add this in your hosts file :
 127.0.0.1 mysql-fradoos fradoos.local
 ```
 
-Then start the project :
+Then prepare folders :
 ```bash
-./run.sh
+mkdir -p build/log/apache2/fradoos.local
+mkdir -p build/log/fradoos.local
+mkdir -p build/data/fradoos
+chmod -R 777 build/log
+```
+
+Launch containers :
+```bash
+composer start
+# or
+docker-compose up
 ```
 Phpmyadmin is available at http://localhost:8090
 
-But for the first time you will need to create tables to run examples.
+But for the first time you will need to create tables and the the schema before running the examples.
 ```bash
 composer update-db
 ```
@@ -70,8 +80,8 @@ curl -XPUT fradoos.local:8080/user/1 -d "name=toto&email=ko@email.fr&company=2&w
 - A user can belong to many working groups
 - A working group can belong to many users
 - We can retrieve user's working groups, but not the opposite
-- A company has a name 
-- A working group has a name 
+- A company has a name
+- A working group has a name
 
 ## Folder structure
 
@@ -103,13 +113,13 @@ Of course, swagger doc is presented through `/api-docs`.
 
 ### Domain
 
-Here we find the logic, very important : the doctrine entities and interfaces to discuss from Application and 
+Here we find the logic, very important : the doctrine entities and interfaces to discuss from Application and
 Infrastructure to Domain.
 
 ### Infrastructure
 
-We don't put the mapping between entities and ORM in annotations in Domain entities. Instead they are in 
-`Infrastructure/Repository/Doctrine/Mapping`. So if we need to change Doctrine by something else, Domain entites stay 
+We don't put the mapping between entities and ORM in annotations in Domain entities. Instead they are in
+`Infrastructure/Repository/Doctrine/Mapping`. So if we need to change Doctrine by something else, Domain entites stay
 the same.
 
 ## Tests
@@ -130,7 +140,7 @@ Mutliple composer scripts to help daily tasks.
 
 Click on commit id to see changes
 
-- [x] [75eddfe](https://github.com/r0mdau/fradoos/commit/75eddfe458ad039f23e19352e72ccef5eaa5cc55) Upgrade slimframework 
+- [x] [75eddfe](https://github.com/r0mdau/fradoos/commit/75eddfe458ad039f23e19352e72ccef5eaa5cc55) Upgrade slimframework
 - [x] [75eddfe](https://github.com/r0mdau/fradoos/commit/75eddfe458ad039f23e19352e72ccef5eaa5cc55) Upgrade Doctrine orm
 - [x] [75eddfe](https://github.com/r0mdau/fradoos/commit/75eddfe458ad039f23e19352e72ccef5eaa5cc55) Upgrade PHPUnit
 - [ ] Add specifications

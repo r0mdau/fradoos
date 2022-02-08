@@ -56,6 +56,7 @@
       "phpstan analyse -l5 src",
       "phpstan analyse -l4 test"
     ],
+    "start": "docker-compose up",
     "test": "phpunit",
     "test-application": "phpunit --testsuite Application",
     "test-domain": "phpunit --testsuite Domain",
