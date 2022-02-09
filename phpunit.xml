@@ -2,23 +2,15 @@
 
 <phpunit bootstrap="test/Bootstrap.php" colors="true">
     <testsuites>
-        <testsuite name="fradoos">
+        <testsuite name="all">
             <directory>./test/</directory>
         </testsuite>
-        <testsuite name="Application">
-            <directory>./test/Application</directory>
+        <testsuite name="unit">
+            <directory>./test/</directory>
+            <exclude>./test/Infrastructure</exclude>
         </testsuite>
-        <testsuite name="Domain">
-            <directory>./test/Domain</directory>
-        </testsuite>
-        <testsuite name="Infrastructure">
+        <testsuite name="infra">
             <directory>./test/Infrastructure</directory>
-        </testsuite>
-        <testsuite name="Presentation">
-            <directory>./test/Application/Presentation</directory>
-        </testsuite>
-        <testsuite name="Helper">
-            <directory>./test/Domain/Helper</directory>
         </testsuite>
     </testsuites>
     <filter>

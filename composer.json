@@ -57,10 +57,11 @@
       "phpstan analyse -l4 test"
     ],
     "start": "docker-compose up",
-    "test": "phpunit",
-    "test-application": "phpunit --testsuite Application",
-    "test-domain": "phpunit --testsuite Domain",
+    "test-all": "phpunit",
+    "test-unit": "phpunit --testsuite unit",
+    "test-infra": "phpunit --testsuite infra",
     "test-infrastructure": "phpunit --testsuite Infrastructure",
+    "test-coverage": "XDEBUG_MODE=coverage phpunit --testsuite unit --colors=always --coverage-clover clover.xml",
     "verify": [
       "@test",
       "@phpstan",
