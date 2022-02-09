@@ -1,5 +1,8 @@
 # Fradoos
 
+![PHPUnit](https://github.com/r0mdau/fradoos/actions/workflows/unit-tests.yml/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/r0mdau/fradoos/badge.svg?branch=main)](https://coveralls.io/github/r0mdau/fradoos?branch=main)
+
 This project is a CRUD demo written in PHP. It's goal is to build a simple reliable and fast developing API
 using :
 - Hexagonal Architecture
