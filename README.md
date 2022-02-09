@@ -127,8 +127,12 @@ the same.
 You can disable the launch of a sql server in docker and use an alternative.
 
 ```bash
-# you need mysql running \o/ todos
 ./run.sh
+# to launch only unit tests
+composer test-unit
+# you need mysql running for infrastructure tests
+composer test-infra
+# to launch all tests
 composer test
 ```
 
