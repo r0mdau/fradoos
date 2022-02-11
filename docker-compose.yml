@@ -23,6 +23,7 @@ services:
       - mysql-fradoos:db
 
   apache-fradoos:
+    # https://github.com/r0mdau/docker-images/tree/main/debian/buster/apache2-php7
     image: r0mdau/buster-apache2-php7
     volumes:
       - ./:/srv/fradoos
