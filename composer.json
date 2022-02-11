@@ -63,7 +63,7 @@
     "test-infrastructure": "phpunit --testsuite Infrastructure",
     "test-coverage": "XDEBUG_MODE=coverage phpunit --testsuite unit --colors=always --coverage-clover clover.xml",
     "verify": [
-      "@test",
+      "@test-all",
       "@phpstan",
       "@phpcs"
     ]
