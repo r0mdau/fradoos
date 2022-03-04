@@ -3,7 +3,7 @@ version: "3"
 services:
 
   mysql-fradoos:
-    image: mariadb:10.0.34
+    image: mariadb:10.6
     environment:
       - MYSQL_ROOT_PASSWORD=test
     volumes:
